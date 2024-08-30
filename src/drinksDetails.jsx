@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { DrinksContext } from './drinks';
 
 const Tarjetas = () => {
-  const { piscola, espumante, apperol, ramazotti } = useContext(DrinksContext);
+  const { piscola, espumante, apperol, ramazotti, hielo } = useContext(DrinksContext);
 
   return (
     <>
@@ -38,6 +38,11 @@ const Tarjetas = () => {
     <p>botellas de agua con gas: {ramazotti.botellasAguaConGas}</p>
     <p>arandanos: {ramazotti.arandanos}</p>
     <p className="marca">marca: {ramazotti.marca}</p>
+  </div>
+  <div id='hielo' className="tarjeta-piscola hielo">
+    <h1>Hielo</h1>
+    <img src={hielo.img} alt="" width='200' />
+    <p>{hielo.bolsas} bolsas de hielo</p>    
   </div>
   </>
   );

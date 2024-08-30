@@ -38,14 +38,19 @@ const DrinksProvider = ({ children }) => {
                 ramazzoti: personas,
                 copasRamazotti: Math.ceil((personas/3))*2,
                 botellasRamazotti: (Math.ceil((personas/3))*2)/5,
-                botellasAguaConGas: (Math.ceil((personas/2))*3)/5,
+                botellasAguaConGas: Math.floor((Math.ceil((personas/2))*3)/8),
                 arandanos: '1 bolsa',
                 img: 'https://www.kitchencenter.cl/cdn/shop/files/ramazzoti_violeto-compressed_228ae963-4e09-41fd-b42f-0c4210459ed9.jpg?v=1711390268',
                 marca: 'ramazotti violetto'
                 };
 
+                const hielo = {
+                    bolsas: (Math.ceil(((personas/2)*3)/3)),
+                    img: 'https://img.freepik.com/fotos-premium/cubos-hielo-sobre-fondo-negro-espacio-copiar_1040193-1778.jpg',                    
+                    };
+
   return (
-    <DrinksContext.Provider value={{ personas, setPersonas, piscola, espumante, apperol, ramazotti }}>
+    <DrinksContext.Provider value={{ personas, setPersonas, piscola, espumante, apperol, ramazotti, hielo }}>
       {children}
     </DrinksContext.Provider>
   );

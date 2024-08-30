@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { DrinksContext } from './drinks'; // Asegúrate de que la ruta es correcta
-import './App.css'
+import './App.css';
 import Tarjetas from './drinksDetails';
-
+import Costos from './costos';
 
 function App() {
-  const { personas, setPersonas, piscola } = useContext(DrinksContext);
+  const { personas, setPersonas } = useContext(DrinksContext);
   const [inputValue, setInputValue] = useState(personas);
+  const [screen, setScreen] = useState('lista');
 
   // Actualiza el estado personas cuando el inputValue cambia
   useEffect(() => {
@@ -19,31 +20,42 @@ function App() {
     setInputValue(isNaN(value) ? 0 : value); // Evita valores no numéricos
   };
 
+  function handleLista() {
+    setScreen('lista');
+  }
+  
+  function handleCostos() {
+    setScreen('costos');
+  }
+
   return (
-    <>        
+    <body>        
       <header>
-        <h1>Cumple Clau</h1>
+        <h1>Cumple Clau.</h1>
         <nav>
-          <li >lista de compras</li>
-          <li>costo del servicio</li>
-        
+          <li onClick={handleLista}>lista de compras</li>
+          <li onClick={handleCostos}>costo del servicio</li>
         </nav>
       </header>
       <label className='input-label' htmlFor="personas-input">Cantidad de personas:</label>
       <input
-          className='input-personas'
-          id="personas-input"
-          type="number"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-      <div id='displayScreen'> 
-        <div className="grid">
-         <Tarjetas />
-        </div> 
-      </div> 
-      
-    </>
+        className='input-personas'
+        id="personas-input"
+        type="number"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <div id='displayScreen'>
+        {screen === 'lista' ? (
+          <div className="grid">
+            <Tarjetas />
+          </div>
+        ) : (
+          <h1 className='costos' style={{ color: 'white', padding: '20px', textAlign: 'start', margin: 'auto' }}>Costos <br /> <br /> barman: movilización- $15.000 <br /> <br /> lo demas auspicia Paulita Zapico <br /> <br /> !eh eh eh!</h1>
+          
+        )}
+      </div>
+    </body>
   );
 }
 
